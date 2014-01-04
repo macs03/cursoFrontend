@@ -6,6 +6,7 @@
 	<title>Puls4; Comunidad para gente atrativa y millonaria</title>
 	<link rel="stylesheet" type="text/css" href="css/normalize.css"/>
 	<link rel="stylesheet" type="text/css" href="css/puls4.css"/>
+	<script src="jquery-2.0.3.min.js"></script>
 </head>
 <body>
 	<header>
@@ -22,6 +23,11 @@
 			<a href="#" class="publicar">
 				Publicar
 			</a>
+			<div>
+				<a href="#12" class="sizer">A</a>
+				<a href="#16" class="sizer">A</a>
+				<a href="#22" class="sizer">A</a>
+			</div>
 		</div>
 		<div class="usuario">
 			<figure class="avatar">
@@ -31,6 +37,7 @@
 				
 			</a>
 		</div>
+		
 	</header>
 	<nav>
 			<ul class="menu">
@@ -66,6 +73,21 @@
 				</li>
 			</ul>
 	</nav>
+	<form action="">
+		<p>
+			<label for="titulo">Titutlo</label>
+			<input placeholder="Ingrese el titulo" type="text" name="titulo" id="titulo"/>
+		</p>
+		<p>
+			<label for="autor">Autor</label>
+			<input placeholder="Ingrese autor" type="text" name="autor" id="autor"/>
+		</p>
+		<p>
+			<label for="tag">Tag</label>
+			<input placeholder="Ingrese tag" type="text" name="tag" id="tag"/>
+		</p>
+		<input value="publicar" type="submit" />
+	</form>
 	<section class="posts">
 		<article class="post">
 			<div class="descripcion">
@@ -258,5 +280,101 @@
 			</span>
 		</h3>
 	</footer>
+	<script type="text/javascript">
+		$(function(){
+			$('.publicar').on('click',mostrarformularios);	
+			function mostrarformularios(){
+				$('form').slideToggle();
+			}
+			$('form').on('submit',procesarformulario);
+			function procesarformulario(ev){
+				ev.preventDefault();
+				var titulo = $('input[name=titulo]').val();
+				var autor = $('input[name=autor]').val();
+				var tag = $('input[name=tag]').val();
+
+				var template = '<article class="post"> \
+			<div class="descripcion"> \
+				<figure class="imagen"> \
+					<img src="imagenes/foto.jpg" alt=""/> \
+				</figure> \
+				<div class="detalles"> \
+					<h2 class="titulo"> \
+						'+titulo+' \
+					</h2> \
+					<p class="autor">por <a href="#">'+autor+'</a> \
+					</p> \
+					<a href="#" class="tag">'+tag+'</a> \
+					<p class="fecha">hace <strong>0 </strong>min</p> \
+				</div> \
+			</div> \
+			<div class="acciones"> \
+				<div class="votos"> \
+						<a href="#" class="up"></a> \
+						<spam class="total">0</spam> \
+						<a href="#" class="down"></a> \
+				</div> \
+				<div class="datos"> \
+					<a href="#" class="comentarios"> \
+						0 \
+					</a> \
+					<a href="#" class="estrellita"></a> \
+				</div> \
+			</div> \
+		</article>';
+
+				$('.posts').prepend($(template).fadeIn(function(){
+					$('.post').css('display','inline-block');
+				}));
+				$('input[type=text]').val('');
+				$('form').slideUp()
+			}
+
+			function crearSizer(pixels){
+				return function(){
+					$('body').css('font-size',pixels+'px');
+				}
+			}
+
+			$('.sizer').each(function(i, link){
+				var pixels = $(link).prop('hash').substring(1);
+				$(link)
+					.css('font-size',pixels+'px')
+					.on('click',crearSizer(pixels));
+			});
+
+
+			function crearContador(valorInicial){
+				var contador = valorInicial || 0;
+				return{
+					up : function() { 
+						return ++contador;	
+					},
+					down: function() {
+						return --contador;
+					}
+				};
+			};
+
+			$('.total').each(function(i, elem){
+				var contTotal = crearContador(elem.innerHTML);
+				$(elem)
+					.siblings('.up')
+						.on('click',function(ev){
+							ev.preventDefault();
+							$(elem).html(contTotal.up());
+						})
+					.siblings('.down')
+						.on('click',function(ev){
+							ev.preventDefault();
+							$(elem).html(contTotal.down());
+						});
+			});
+
+		}
+		);
+
+
+	</script>
 </body>
 </html>

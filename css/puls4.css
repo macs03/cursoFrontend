@@ -1,10 +1,12 @@
 @font-face{font-family:'iconitos';src:url("../fonts/icomoon.eot");src:url("../fonts/icomoon.eot?#iefix") format('embedded-opentype'),url("../fonts/icomoon.woff") format('woff'),url("../fonts/icomoon.ttf") format('truetype'),url("../fonts/icomoon.svg#icomoon") format('svg');font-weight:normal;font-style:normal}
 a{color:#dd4f24}
-body{background:#e8e8e8;color:#444;font-family:Arial;font-size:16px}
+body{background:#e8e8e8;color:#444;font-family:Arial;font-size:16px;transition:font-size 1s}
 footer{background:#dd4f24;color:rgba(255,255,255,0.5);padding:1em 0;text-align:center;width:100%;}
 footer h3{font-size:14px;font-weight:normal;}
 footer h3 strong{display:block}
 footer h3 .mejor:before,footer h3 .mejor:after{content:"-"}
+form{padding:.8em;display:none;}
+form label{display:inline-block;width:60px}
 header{background:#444;box-shadow:0 5px 0 rgba(0,0,0,0.2);color:#fff;overflow:hidden;padding:.5em;position:relative;z-index:3;}
 header .logo{border-right:1px solid #22bce0;width:60px;float:left;}
 header .logo img{width:52px}
@@ -13,6 +15,7 @@ header .titular .filtro{color:#22bce0;font-size:14px;font-style:italic;font-weig
 header .titular .publicar{background:#dd4f24;color:#fff;font-style:italic;padding:.2em .5em;text-decoration:none;float:right;text-shadow:1px 1px 0 #000;}
 header .titular .publicar:before{content:"\e600";display:inline-block;font-family:"iconitos";margin:0 3px 0 0}
 header .titular .titulo{font-size:18px;font-weight:normal;margin:0;padding:0}
+header .titular .sizer{text-decoration:none;padding:.2em}
 header .usuario{position:absolute;top:10px;right:10px;}
 header .usuario .avatar{margin:0 1.1em 0 0;z-index:2;position:relative;}
 header .usuario .avatar img{border-radius:50%;width:50px}

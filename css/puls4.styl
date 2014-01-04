@@ -22,6 +22,7 @@ body
 	color gris_oscuro
 	font-family Arial
 	font-size 16px
+	transition font-size 1s
 
 footer
 	background naranja
@@ -41,6 +42,14 @@ footer
 			&:before
 			&:after
 				content "-"
+
+form 
+	padding 0.8em
+	display none
+
+	label
+		display inline-block
+		width 60px
 
 header 
 	background gris_oscuro
@@ -89,6 +98,10 @@ header
 			font-weight normal
 			margin 0
 			padding 0
+	
+		.sizer
+			text-decoration none
+			padding 0.2em
 
 	.usuario
 		position absolute
